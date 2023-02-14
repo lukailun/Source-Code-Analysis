@@ -1,4 +1,4 @@
-# [SnapKit](https://github.com/SnapKit/SnapKit)
+# [SnapKit(5.6.0)](https://github.com/SnapKit/SnapKit/tree/5.6.0)
 
 基本用法。
 ```swift
@@ -21,7 +21,7 @@ class MyViewController: UIViewController {
 }
 ```
 
-查看 `snp` 属性，位于 `ConstraintView+Extensions.swift`。
+查看 `snp` 属性，位于 `[ConstraintView+Extensions.swift](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)`。
 ```swift
 public extension ConstraintView {
     var snp: ConstraintViewDSL {
@@ -30,7 +30,7 @@ public extension ConstraintView {
 }
 ```
 
-`ConstraintView` 类，位于 `ConstraintView.swift`。
+`ConstraintView` 类，位于 `[ConstraintView.swift](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)`。
 ```swift
 #if os(iOS) || os(tvOS)
     public typealias ConstraintView = UIView
