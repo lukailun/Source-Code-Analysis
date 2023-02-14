@@ -1,6 +1,6 @@
 # [SnapKit(5.6.0)](https://github.com/SnapKit/SnapKit/tree/5.6.0)
 
-基本用法。
+## 基本用法。
 ```swift
 import SnapKit
 
@@ -21,6 +21,7 @@ class MyViewController: UIViewController {
 }
 ```
 
+## `ConstraintView`
 查看 `snp` 属性，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)。
 ```swift
 public extension ConstraintView {
