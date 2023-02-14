@@ -1,6 +1,6 @@
 # [SnapKit(5.6.0)](https://github.com/SnapKit/SnapKit/tree/5.6.0)
 
-## 基本用法。
+## 基本用法
 ```swift
 import SnapKit
 
