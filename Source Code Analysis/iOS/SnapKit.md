@@ -21,7 +21,7 @@ class MyViewController: UIViewController {
 }
 ```
 
-查看 `snp` 属性，位于 `[ConstraintView+Extensions.swift](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)`。
+查看 `snp` 属性，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)。
 ```swift
 public extension ConstraintView {
     var snp: ConstraintViewDSL {
