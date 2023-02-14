@@ -23,7 +23,7 @@ def generate(dir, depth, file):
         else:
             if not path.endswith('.md'):
                 continue
-            content = '* [' + path + '](https://github.com/lukailun/' + repoName + '/tree/master/' + quote(fullPath.replace(rootDir, '')) + ')\n'
+            content = '* [' + path.replace('.md', '') + '](https://github.com/lukailun/' + repoName + '/tree/master/' + quote(fullPath.replace(rootDir, '')) + ')\n'
             file.write(content)
 
 with open('README.md', 'w') as README:
