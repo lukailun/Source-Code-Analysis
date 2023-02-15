@@ -31,7 +31,7 @@ public extension ConstraintView {
 }
 ```
 
-`ConstraintView` 类，为 `UIView`/`NSView` 的类型别名，位于 [`ConstraintView.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)。
+查看 `ConstraintView` 类，为 `UIView`/`NSView` 的类型别名，位于 [`ConstraintView.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)。
 ```swift
 #if os(iOS) || os(tvOS)
     public typealias ConstraintView = UIView
@@ -40,3 +40,5 @@ public extension ConstraintView {
 #endif
 ```
 
+## `ConstraintViewDSL`
+查看 `ConstraintViewDSL` 类，位于[`ConstraintViewDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintViewDSL.swift)
