@@ -55,9 +55,10 @@ public extension ConstraintLayoutSupport {
 
 ```swift
 #if os(iOS) || os(tvOS)
-    public typealias ConstraintView = UIView
+    @available(iOS 8.0, *)
+    public typealias ConstraintLayoutSupport = UILayoutSupport
 #else
-    public typealias ConstraintView = NSView
+    public class ConstraintLayoutSupport {}
 #endif
 ```
 
