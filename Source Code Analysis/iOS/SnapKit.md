@@ -41,6 +41,17 @@ public extension ConstraintView {
 ```
 
 ## `ConstraintViewDSL`
-查看 `ConstraintViewDSL` 类，位于 [`ConstraintViewDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintViewDSL.swift)。
+查看 `ConstraintViewDSL` 类，为遵循 `ConstraintAttributesDSL` 协议的结构体，位于 [`ConstraintViewDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintViewDSL.swift)。
 ```swift
+public struct ConstraintViewDSL: ConstraintAttributesDSL {
+    public var target: AnyObject? {
+        return self.view
+    }
+    
+    internal let view: ConstraintView
+    
+    internal init(view: ConstraintView) {
+        self.view = view   
+    }
+}
 ```
