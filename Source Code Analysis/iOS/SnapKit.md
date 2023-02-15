@@ -40,6 +40,8 @@ public extension ConstraintView {
 #endif
 ```
 
+---
+
 ```swift
 @available(iOS 8.0, *)
 public extension ConstraintLayoutSupport {
@@ -50,6 +52,7 @@ public extension ConstraintLayoutSupport {
 ```
 
 查看 `ConstraintLayoutSupport` 类，在 `iOS` 为 `UILayoutSupport` 的类型别名，位于 [`ConstraintLayoutSupport.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutSupport.swift)。
+
 ```swift
 #if os(iOS) || os(tvOS)
     public typealias ConstraintView = UIView
@@ -57,6 +60,8 @@ public extension ConstraintLayoutSupport {
     public typealias ConstraintView = NSView
 #endif
 ```
+
+---
 
 ```swift
 @available(iOS 9.0, OSX 10.11, *)
