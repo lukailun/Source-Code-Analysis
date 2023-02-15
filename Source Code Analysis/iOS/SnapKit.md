@@ -22,11 +22,29 @@ class MyViewController: UIViewController {
 ```
 
 ## `ConstraintView`
-查看 `snp` 属性，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)。
+查看 `snp` 属性，有 3 处，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)、[`UILayoutSupport+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/UILayoutSupport%2BExtensions.swift)、[`ConstraintLayoutGuide+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutGuide%2BExtensions.swift)。
 ```swift
 public extension ConstraintView {
     var snp: ConstraintViewDSL {
         return ConstraintViewDSL(view: self)
+    }
+}
+```
+
+```swift
+@available(iOS 8.0, *)
+public extension ConstraintLayoutSupport {
+    var snp: ConstraintLayoutSupportDSL {
+        return ConstraintLayoutSupportDSL(support: self)
+    }
+}
+```
+
+```swift
+@available(iOS 9.0, OSX 10.11, *)
+public extension ConstraintLayoutGuide {
+    var snp: ConstraintLayoutGuideDSL {
+        return ConstraintLayoutGuideDSL(guide: self)
     }
 }
 ```
