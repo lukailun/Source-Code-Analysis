@@ -56,7 +56,18 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
 }
 ```
 
-查看 `ConstraintAttributesDSL` 协议，位于 [`ConstraintDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintDSL.swift)。
+查看 `ConstraintAttributesDSL` 协议、`ConstraintBasicAttributesDSL` 协议、`ConstraintDSL` 协议，位于 [`ConstraintDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintDSL.swift)。
 ```swift
 public protocol ConstraintAttributesDSL: ConstraintBasicAttributesDSL {}
+
+public protocol ConstraintBasicAttributesDSL: ConstraintDSL {}
+
+public protocol ConstraintDSL {
+    var target: AnyObject? { get }
+    
+    func setLabel(_ value: String?)
+    func label() -> String?
+}
 ```
+
+
