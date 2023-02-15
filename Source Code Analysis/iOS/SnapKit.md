@@ -31,6 +31,15 @@ public extension ConstraintView {
 }
 ```
 
+查看 `ConstraintView` 类，为 `UIView`/`NSView` 的类型别名，位于 [`ConstraintView.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)。
+```swift
+#if os(iOS) || os(tvOS)
+    public typealias ConstraintView = UIView
+#else
+    public typealias ConstraintView = NSView
+#endif
+```
+
 ```swift
 @available(iOS 8.0, *)
 public extension ConstraintLayoutSupport {
@@ -38,6 +47,15 @@ public extension ConstraintLayoutSupport {
         return ConstraintLayoutSupportDSL(support: self)
     }
 }
+```
+
+查看 `ConstraintLayoutSupport` 类，在 `iOS` 为 `UILayoutSupport` 的类型别名，位于 [`ConstraintLayoutSupport.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutSupport.swift)。
+```swift
+#if os(iOS) || os(tvOS)
+    public typealias ConstraintView = UIView
+#else
+    public typealias ConstraintView = NSView
+#endif
 ```
 
 ```swift
@@ -49,12 +67,14 @@ public extension ConstraintLayoutGuide {
 }
 ```
 
-查看 `ConstraintView` 类，为 `UIView`/`NSView` 的类型别名，位于 [`ConstraintView.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)。
+查看 `ConstraintLayoutGuide` 类，为 `UILayoutGuide`/`NSLayoutGuide` 的类型别名，位于 [`ConstraintLayoutGuide.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutGuide.swift)。
 ```swift
 #if os(iOS) || os(tvOS)
-    public typealias ConstraintView = UIView
+    @available(iOS 9.0, *)
+    public typealias ConstraintLayoutGuide = UILayoutGuide
 #else
-    public typealias ConstraintView = NSView
+    @available(OSX 10.11, *)
+    public typealias ConstraintLayoutGuide = NSLayoutGuide
 #endif
 ```
 
