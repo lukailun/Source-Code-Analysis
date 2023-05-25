@@ -8,6 +8,37 @@ let url = URL(string: "https://example.com/image.png")
 imageView.kf.setImage(with: url)
 ```
 
+## `KingfisherCompatible` & `KingfisherCompatibleValue`
+
+查看 `kf` 属性，在 `KingfisherCompatible` 和 `KingfisherCompatibleValue` 中。`kf` 类型为 `KingfisherWrapper` 结构体。
+
+```swift
+public struct KingfisherWrapper<Base> {
+    public let base: Base
+    public init(_ base: Base) {
+        self.base = base
+    }
+}
+
+public protocol KingfisherCompatible: AnyObject { }
+
+public protocol KingfisherCompatibleValue {}
+
+extension KingfisherCompatible {
+    public var kf: KingfisherWrapper<Self> {
+        get { return KingfisherWrapper(self) }
+        set { }
+    }
+}
+
+extension KingfisherCompatibleValue {
+    public var kf: KingfisherWrapper<Self> {
+        get { return KingfisherWrapper(self) }
+        set { }
+    }
+}
+```
+
 ## 总结
 
 * 使用 `ConstraintViewDSL` 进行命名空间的统一收拢。
