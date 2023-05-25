@@ -151,4 +151,52 @@ public func removeConstraints() {
 ## `ConstraintMaker`
 查看 `ConstraintMaker` 类，位于 [`ConstraintMaker.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintMaker.swift)。
 
+```swift
+public class ConstraintMaker {
+    internal static func prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+        let maker = ConstraintMaker(item: item)
+        closure(maker)
+        var constraints: [Constraint] = []
+        for description in maker.descriptions {
+            guard let constraint = description.constraint else {
+                continue
+            }
+            constraints.append(constraint)
+        }
+        return constraints
+    }
+
+    internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        let constraints = prepareConstraints(item: item, closure: closure)
+        for constraint in constraints {
+            constraint.activateIfNeeded(updatingExisting: false)
+        }
+    }
+
+    internal static func remakeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        self.removeConstraints(item: item)
+        self.makeConstraints(item: item, closure: closure)
+    }
+
+    internal static func updateConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
+        guard item.constraints.count > 0 else {
+            self.makeConstraints(item: item, closure: closure)
+            return
+        }
+
+        let constraints = prepareConstraints(item: item, closure: closure)
+        for constraint in constraints {
+            constraint.activateIfNeeded(updatingExisting: true)
+        }
+    }
+
+    internal static func removeConstraints(item: LayoutConstraintItem) {
+        let constraints = item.constraints
+        for constraint in constraints {
+            constraint.deactivateIfNeeded()
+        }
+    }
+}
+```
+
 
