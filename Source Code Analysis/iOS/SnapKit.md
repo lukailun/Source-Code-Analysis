@@ -23,7 +23,9 @@ class MyViewController: UIViewController {
 
 ## `ConstraintView` & `ConstraintLayoutSupport` & `ConstraintLayoutGuide`
 SnapKit 对 View、LayoutSupport、LayoutGuide 进行了统一的封装。
+
 查看 `snp` 属性，有 3 处，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)、[`UILayoutSupport+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/UILayoutSupport%2BExtensions.swift)、[`ConstraintLayoutGuide+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutGuide%2BExtensions.swift)。
+
 ```swift
 public extension ConstraintView {
     var snp: ConstraintViewDSL {
@@ -33,6 +35,7 @@ public extension ConstraintView {
 ```
 
 查看 `ConstraintView` 类，为 `UIView`/`NSView` 的类型别名，位于 [`ConstraintView.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView.swift)。
+
 ```swift
 #if os(iOS) || os(tvOS)
     public typealias ConstraintView = UIView
@@ -75,6 +78,7 @@ public extension ConstraintLayoutGuide {
 ```
 
 查看 `ConstraintLayoutGuide` 类，为 `UILayoutGuide`/`NSLayoutGuide` 的类型别名，位于 [`ConstraintLayoutGuide.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutGuide.swift)。
+
 ```swift
 #if os(iOS) || os(tvOS)
     @available(iOS 9.0, *)
@@ -87,7 +91,9 @@ public extension ConstraintLayoutGuide {
 
 ## `ConstraintViewDSL`
 查看 `ConstraintViewDSL` 类，为遵循 `ConstraintAttributesDSL` 协议的结构体，位于 [`ConstraintViewDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintViewDSL.swift)。
+
 其中，持有属性 `view`。因为 `ConstraintViewDSL` 为 `struct`，没有引用计数，所以不会造成循环引用。
+
 ```swift
 public struct ConstraintViewDSL: ConstraintAttributesDSL {
     public var target: AnyObject? {
@@ -103,6 +109,7 @@ public struct ConstraintViewDSL: ConstraintAttributesDSL {
 ```
 
 查看 `ConstraintAttributesDSL` 协议、`ConstraintBasicAttributesDSL` 协议、`ConstraintDSL` 协议，位于 [`ConstraintDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintDSL.swift)。
+
 ```swift
 public protocol ConstraintAttributesDSL: ConstraintBasicAttributesDSL {}
 
@@ -116,7 +123,8 @@ public protocol ConstraintDSL {
 }
 ```
 
-查看 `ConstraintViewDSL` 中最常用的设置属性的几个方法。
+查看 `ConstraintViewDSL` 中最常用的设置约束的几个方法。
+
 ```swift
 @discardableResult
 public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
