@@ -201,7 +201,7 @@ public class ConstraintMaker {
 
 统一调用了 `prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint]` 方法，创建一个新的 `ConstraintMaker` 并通过 `closure` 将添加约束的代码进行调用。
 
-`ConstraintMaker` 中定义了一系列常用的属性 `left`、`top`、`bottom`、`right` 等。
+`ConstraintMaker` 中定义了一系列常用的属性 `left`、`top`、`bottom`、`right` 等，都为 `ConstraintMakerExtendable` 类型。
 
 ```swift
 public var left: ConstraintMakerExtendable {
@@ -221,4 +221,91 @@ public var right: ConstraintMakerExtendable {
 }
 ```
 
+## `ConstraintMakerExtendable` & `ConstraintMakerRelatable`
+查看 `ConstraintMakerExtendable` 类，为遵循 `ConstraintMakerRelatable` 协议的类，位于 [`ConstraintMakerExtendable.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintMakerExtendable.swift)。
+
+```swift
+public class ConstraintMakerExtendable: ConstraintMakerRelatable {
+    
+    public var left: ConstraintMakerExtendable {
+        self.description.attributes += .left
+        return self
+    }
+    
+    public var top: ConstraintMakerExtendable {
+        self.description.attributes += .top
+        return self
+    }
+    
+    public var bottom: ConstraintMakerExtendable {
+        self.description.attributes += .bottom
+        return self
+    }
+    
+    public var right: ConstraintMakerExtendable {
+        self.description.attributes += .right
+        return self
+    }
+}
+```
+
+查看 `ConstraintMakerRelatable` 类，位于 [`ConstraintMakerExtendable.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintMakerRelatable.swift)。
+
+```swift
+public class ConstraintMakerRelatable {
+
+    internal func relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable {
+        let related: ConstraintItem
+        let constant: ConstraintConstantTarget
+        
+        if let other = other as? ConstraintItem {
+            guard other.attributes == ConstraintAttributes.none ||
+                  other.attributes.layoutAttributes.count <= 1 ||
+                  other.attributes.layoutAttributes == self.description.attributes.layoutAttributes ||
+                  other.attributes == .edges && self.description.attributes == .margins ||
+                  other.attributes == .margins && self.description.attributes == .edges ||
+                  other.attributes == .directionalEdges && self.description.attributes == .directionalMargins ||
+                  other.attributes == .directionalMargins && self.description.attributes == .directionalEdges else {
+                fatalError("Cannot constraint to multiple non identical attributes. (\(file), \(line))");
+            }
+            
+            related = other
+            constant = 0.0
+        } else if let other = other as? ConstraintView {
+            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+            constant = 0.0
+        } else if let other = other as? ConstraintConstantTarget {
+            related = ConstraintItem(target: nil, attributes: ConstraintAttributes.none)
+            constant = other
+        } else if #available(iOS 9.0, OSX 10.11, *), let other = other as? ConstraintLayoutGuide {
+            related = ConstraintItem(target: other, attributes: ConstraintAttributes.none)
+            constant = 0.0
+        } else {
+            fatalError("Invalid constraint. (\(file), \(line))")
+        }
+        
+        let editable = ConstraintMakerEditable(self.description)
+        editable.description.sourceLocation = (file, line)
+        editable.description.relation = relation
+        editable.description.related = related
+        editable.description.constant = constant
+        return editable
+    }
+    
+    @discardableResult
+    public func equalTo(_ other: ConstraintRelatableTarget, _ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        return self.relatedTo(other, relation: .equal, file: file, line: line)
+    }
+    
+    @discardableResult
+    public func equalToSuperview(_ file: String = #file, _ line: UInt = #line) -> ConstraintMakerEditable {
+        guard let other = self.description.item.superview else {
+            fatalError("Expected superview but found nil when attempting make constraint `equalToSuperview`.")
+        }
+        return self.relatedTo(other, relation: .equal, file: file, line: line)
+    }
+}
+```
+
+统一调用了 `relatedTo(_ other: ConstraintRelatableTarget, relation: ConstraintRelation, file: String, line: UInt) -> ConstraintMakerEditable` 方法，添加约束。
 
