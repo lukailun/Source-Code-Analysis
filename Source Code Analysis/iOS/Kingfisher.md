@@ -10,7 +10,9 @@ imageView.kf.setImage(with: url)
 
 ## `KingfisherCompatible` & `KingfisherCompatibleValue`
 
-查看 `kf` 属性，在 `KingfisherCompatible` 和 `KingfisherCompatibleValue` 中。`kf` 类型为 `KingfisherWrapper` 结构体。
+查看 `kf` 属性，在 `KingfisherCompatible` 和 `KingfisherCompatibleValue` 中，位于 [`Kingfisher.swift`](https://github.com/onevcat/Kingfisher/blob/7.7.0/Sources/General/Kingfisher.swift)。
+
+`kf` 类型为 `KingfisherWrapper` 结构体。
 
 ```swift
 public struct KingfisherWrapper<Base> {
