@@ -87,7 +87,7 @@ public extension ConstraintLayoutGuide {
 
 ## `ConstraintViewDSL`
 查看 `ConstraintViewDSL` 类，为遵循 `ConstraintAttributesDSL` 协议的结构体，位于 [`ConstraintViewDSL.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintViewDSL.swift)。
-其中，将 view 作为属性传入。因为 `ConstraintViewDSL` 为 `struct`，没有引用计数，所以不会造成循环引用。
+其中，持有属性 `view`。因为 `ConstraintViewDSL` 为 `struct`，没有引用计数，所以不会造成循环引用。
 ```swift
 public struct ConstraintViewDSL: ConstraintAttributesDSL {
     public var target: AnyObject? {
@@ -113,6 +113,30 @@ public protocol ConstraintDSL {
     
     func setLabel(_ value: String?)
     func label() -> String?
+}
+```
+
+查看 `ConstraintViewDSL` 中最常用的设置属性的几个方法。
+```swift
+@discardableResult
+public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+    return ConstraintMaker.prepareConstraints(item: self.view, closure: closure)
+}
+
+public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    ConstraintMaker.makeConstraints(item: self.view, closure: closure)
+}
+
+public func remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    ConstraintMaker.remakeConstraints(item: self.view, closure: closure)
+}
+
+public func updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+    ConstraintMaker.updateConstraints(item: self.view, closure: closure)
+}
+
+public func removeConstraints() {
+    ConstraintMaker.removeConstraints(item: self.view)
 }
 ```
 
