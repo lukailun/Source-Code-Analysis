@@ -22,6 +22,7 @@ class MyViewController: UIViewController {
 ```
 
 ## `ConstraintView` & `ConstraintLayoutSupport` & `ConstraintLayoutGuide`
+SnapKit 对 View、LayoutSupport、LayoutGuide 进行了统一的封装。
 查看 `snp` 属性，有 3 处，位于 [`ConstraintView+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintView%2BExtensions.swift)、[`UILayoutSupport+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/UILayoutSupport%2BExtensions.swift)、[`ConstraintLayoutGuide+Extensions.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutGuide%2BExtensions.swift)。
 ```swift
 public extension ConstraintView {
@@ -51,7 +52,7 @@ public extension ConstraintLayoutSupport {
 }
 ```
 
-查看 `ConstraintLayoutSupport` 类，在 `iOS` 为 `UILayoutSupport` 的类型别名，位于 [`ConstraintLayoutSupport.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutSupport.swift)。
+查看 `ConstraintLayoutSupport` 类，为 `UILayoutSupport` 的类型别名，位于 [`ConstraintLayoutSupport.swift`](https://github.com/SnapKit/SnapKit/blob/5.6.0/Sources/ConstraintLayoutSupport.swift)。
 
 ```swift
 #if os(iOS) || os(tvOS)
