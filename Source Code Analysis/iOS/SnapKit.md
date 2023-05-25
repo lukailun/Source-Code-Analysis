@@ -199,4 +199,26 @@ public class ConstraintMaker {
 }
 ```
 
+统一调用了 `prepareConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) -> [Constraint]` 方法，创建一个新的 `ConstraintMaker` 并通过 `closure` 将添加约束的代码进行调用。
+
+`ConstraintMaker` 中定义了一系列常用的属性 `left`、`top`、`bottom`、`right` 等。
+
+```swift
+public var left: ConstraintMakerExtendable {
+    return self.makeExtendableWithAttributes(.left)
+}
+
+public var top: ConstraintMakerExtendable {
+    return self.makeExtendableWithAttributes(.top)
+}
+
+public var bottom: ConstraintMakerExtendable {
+    return self.makeExtendableWithAttributes(.bottom)
+}
+    
+public var right: ConstraintMakerExtendable {
+    return self.makeExtendableWithAttributes(.right)
+}
+```
+
 
