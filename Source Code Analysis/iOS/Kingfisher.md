@@ -158,6 +158,12 @@ func setImage(
 }
 ```
 
+核心功能，为 `func retrieveImage(with source: Source, options: KingfisherParsedOptionsInfo, downloadTaskUpdated: DownloadTaskUpdatedBlock? = nil, progressiveImageSetter: ((KFCrossPlatformImage?) -> Void)? = nil, referenceTaskIdentifierChecker: (() -> Bool)? = nil, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)?) -> DownloadTask?` 方法。
+
+## `KingfisherManager`
+
+查看 `KingfisherManager`，位于 [`KingfisherManager.swift`](https://github.com/onevcat/Kingfisher/blob/7.7.0/Sources/General/KingfisherManager.swift)。
+
 ## 总结
 
 * 使用 `ConstraintViewDSL` 进行命名空间的统一收拢。
