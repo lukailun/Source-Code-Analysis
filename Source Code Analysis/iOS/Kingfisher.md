@@ -41,6 +41,14 @@ extension KingfisherCompatibleValue {
 }
 ```
 
+## `KingfisherWrapper`
+
+查看 `setImage(with resource: Resource?, placeholder: Placeholder? = nil, options: KingfisherOptionsInfo? = nil, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) -> DownloadTask?` 方法，位于 [`ImageView+Kingfisher.swift`](https://github.com/onevcat/Kingfisher/blob/7.7.0/Sources/Extensions/ImageView%2BKingfisher.swift)。
+
+```swift
+
+```
+
 ## 总结
 
 * 使用 `ConstraintViewDSL` 进行命名空间的统一收拢。
