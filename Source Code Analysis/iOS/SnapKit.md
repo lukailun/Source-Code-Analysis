@@ -126,25 +126,28 @@ public protocol ConstraintDSL {
 查看 `ConstraintViewDSL` 中几个最常用的设置约束的方法。
 
 ```swift
-@discardableResult
-public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
-    return ConstraintMaker.prepareConstraints(item: self.view, closure: closure)
-}
-
-public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
-    ConstraintMaker.makeConstraints(item: self.view, closure: closure)
-}
-
-public func remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
-    ConstraintMaker.remakeConstraints(item: self.view, closure: closure)
-}
-
-public func updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
-    ConstraintMaker.updateConstraints(item: self.view, closure: closure)
-}
-
-public func removeConstraints() {
-    ConstraintMaker.removeConstraints(item: self.view)
+public struct ConstraintViewDSL: ConstraintAttributesDSL {
+    
+    @discardableResult
+    public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
+        return ConstraintMaker.prepareConstraints(item: self.view, closure: closure)
+    }
+    
+    public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+        ConstraintMaker.makeConstraints(item: self.view, closure: closure)
+    }
+    
+    public func remakeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+        ConstraintMaker.remakeConstraints(item: self.view, closure: closure)
+    }
+    
+    public func updateConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
+        ConstraintMaker.updateConstraints(item: self.view, closure: closure)
+    }
+    
+    public func removeConstraints() {
+        ConstraintMaker.removeConstraints(item: self.view)
+    }
 }
 ```
 
@@ -204,20 +207,23 @@ public class ConstraintMaker {
 `ConstraintMaker` 中定义了一系列常用的属性 `left`、`top`、`bottom`、`right` 等，都为 `ConstraintMakerExtendable` 类型。
 
 ```swift
-public var left: ConstraintMakerExtendable {
-    return self.makeExtendableWithAttributes(.left)
-}
-
-public var top: ConstraintMakerExtendable {
-    return self.makeExtendableWithAttributes(.top)
-}
-
-public var bottom: ConstraintMakerExtendable {
-    return self.makeExtendableWithAttributes(.bottom)
-}
+public class ConstraintMaker {
     
-public var right: ConstraintMakerExtendable {
-    return self.makeExtendableWithAttributes(.right)
+    public var left: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.left)
+    }
+    
+    public var top: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.top)
+    }
+    
+    public var bottom: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.bottom)
+    }
+    
+    public var right: ConstraintMakerExtendable {
+        return self.makeExtendableWithAttributes(.right)
+    }
 }
 ```
 
